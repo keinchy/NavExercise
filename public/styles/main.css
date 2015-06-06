@@ -3,12 +3,12 @@
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 body,html {
   background: #fff;
-  color: #fff;
+ 
   padding: 0px;
   margin: 0px;
 }
 
-
+/* NAVIGATION : BEGIN */
 .navigation{
   position: relative;
   display: block;
@@ -17,27 +17,41 @@ body,html {
   background: #ec008c;
 }
 
+/* NAVIGATION :  END */
 .hero{
   position: relative;
   display: block;
   width: 100%;
-  height: inherit;
+  height: 640px;
   background:url('../images/background-image.jpg') no-repeat top center #000;
   background-size: cover;
   -webkit-background-size: cover;
 }
-.hero h1 {
-  position: relative;
+h1 {
+  position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -0%);
-  transform: translate(-50%, -0%);
+  color:#fff;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   margin: 0;
   font: 15vmin/1.2 HUGEAvantGardeBold;
   letter-spacing: -0.02em;
   text-align: center;
   width: 100%;
 }
-.hero h1 span{
+h1 span{
   display: block;
+}
+
+
+.content-wrapper{
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 980px;
+  color:#000;
+  font:16px/2 "Galaxie";
+  margin: 0 auto 0 auto;
+  padding: 0 0%;
 }
