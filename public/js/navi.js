@@ -13,7 +13,8 @@ var init = function(){
 
   // Variables - Variables available throughout the scope of this object
   // -------------------------------------------------------------------
-  var navData;
+  var navData,
+      $navWrapper = document.getElementById('navigation-links');
 
 
    loadJSON(function(response) {
@@ -21,10 +22,40 @@ var init = function(){
       
       console.log(navData.items);
       console.log(navData.items.length);
-      console.log(navData.items[0]);
+     
       
      for (var navItem = 0; navItem < navData.items.length; navItem++) {
-        console.log(navData.items[navItem].label+' '+navData.items[navItem].items+' '+navData.items[navItem].url);
+
+        var linkBox = document.createElement( 'div' );  
+        linkBox.className = "nav-btn";
+
+        var linkSubBox = document.createElement( 'div' );
+        linkSubBox.className = "sub-nav-holder";
+
+        var linkBoxContent = '<a href="'+navData.items[navItem].url+'">'+navData.items[navItem].label+'</a>';
+
+        linkBox.innerHTML = linkBoxContent;
+        $navWrapper.appendChild(linkBox);
+
+        if(navData.items[navItem].items.length > 0){
+            for (var navSubItem = 0; navSubItem < navData.items[navItem].items.length; navSubItem++) {
+                  
+                  var a = document.createElement('a');
+                  var linkText = document.createTextNode(navData.items[navItem].items[navSubItem].label);
+                  a.appendChild(linkText);
+                  a.title = navData.items[navItem].items[navSubItem].label;
+                  a.href = navData.items[navItem].items[navSubItem].url;
+
+                  linkSubBox.appendChild(a);
+            };
+
+            linkBox.appendChild(linkSubBox);
+        }
+
+        
+
+
+        
 
       }
     });

@@ -9,15 +9,106 @@ body,html {
 }
 
 /* NAVIGATION : BEGIN */
+
 .navigation{
   position: relative;
   display: block;
   width: 100%;
   height: 72px;
   background: #ec008c;
+  font-size: 0px;
+  z-index: 3;
+
 }
 
+.navigation #btn-home{
+  position: relative;
+  display: inline-block;
+  height: 24px;
+  width: 60px;
+  background: url('../images/HUGE.png') no-repeat top center;
+  background-size: 60px;
+  background-position: 0px -60px;
+  padding: 0px;
+  margin: 24px 48px 0 24px;
+}
+
+.navigation .nav-btn-holder{
+  position: relative;
+  display: inline-block;
+  margin: 0px;
+  top: 0px;
+  
+  height: inherit;
+  vertical-align: top;
+  width: auto;
+  font-size: 0px;
+  
+}
+.navigation .nav-btn-holder .nav-btn{
+  position: relative;
+  display: inline-block;
+  }
+.navigation .nav-btn-holder .nav-btn a{
+  padding: 24px;
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+  font: 21px/1.2 HUGEAvantGardeBold;
+  vertical-align: middle;
+  display: block;
+  text-transform: capitalize;
+}
+.navigation .nav-btn-holder .nav-btn:hover a{
+  color: #ec008c;
+  background: #fff;
+} 
+
+.navigation .nav-btn-holder .nav-btn:hover .sub-nav-holder{
+    height:auto;
+  }
+.navigation .nav-btn-holder .nav-btn .sub-nav-holder{
+  position: absolute;
+  top: 72px;
+  left: 0px;
+  background: #fff;
+  display: block;
+  width: 225px;
+  height: 0px;
+  overflow: hidden;
+
+}
+
+.navigation .nav-btn-holder .nav-btn .sub-nav-holder a{
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  color: #000;
+  font-size: 12px;
+  text-decoration: none;
+  font:16px/2 "Galaxie";
+  vertical-align: middle;
+  display: block;
+  text-transform: capitalize;
+}
+.navigation .nav-btn-holder .nav-btn .sub-nav-holder a:first-child{
+  margin-top: 12px;
+  }
+.navigation .nav-btn-holder .nav-btn .sub-nav-holder a:hover{
+  background: #eee;
+  color:#ec008c;
+}
+
+
+
+
 /* NAVIGATION :  END */
+
+
+
+
+
 .hero{
   position: relative;
   display: block;
@@ -27,6 +118,7 @@ body,html {
   background-size: cover;
   -webkit-background-size: cover;
 }
+
 h1 {
   position: absolute;
   top: 50%;
