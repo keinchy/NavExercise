@@ -124,6 +124,17 @@ body,html {
   color: #000;
 }
 
+#legal{
+  position: absolute;
+  display: block;
+  bottom: 50px;
+  font-size: 12px;
+  left: 24px;
+  font-family: "Helvetica";
+  z-index: 1;
+  color: #000;
+}
+
 /*
 .navigation .nav-btn-holder .nav-btn:hover .sub-nav-holder{
    height: 0px;

@@ -222,6 +222,11 @@ var init = function(){
               $mobileMenuOpen = false;  
           });
 
+          $siteCover.addEventListener("click", function(){
+              closeMobileMenu();
+              $mobileMenuOpen = false;  
+          });
+
 
 
 

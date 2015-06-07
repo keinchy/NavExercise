@@ -14,7 +14,8 @@
 @media only screen and (max-width : 900px) {
 
 	.main-wrapper{
-		margin-top: 60px;
+		padding-top: 60px;
+		padding-bottom: 60px;
 
 		
 		
@@ -77,9 +78,11 @@
 	}
 
 	.navigation .nav-btn-holder .nav-btn{
+		position: relative;
 		display: block;
 		background: #fff;
 	}
+
 	
 	.navigation .nav-btn-holder .with-sub a{
 		background: url('../images/arrow-down.png') no-repeat 93% 26px;
@@ -107,6 +110,7 @@
 
 	.navigation .nav-btn-holder .nav-btn .sub-nav-holder{
 		position: relative;
+		display: block;
 		top: 0px;
 		width: 100%;
 		 -moz-box-shadow: none;
