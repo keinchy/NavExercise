@@ -1,7 +1,12 @@
 
 
-@media only screen and (max-width : 900px) {
-
+@media only screen and (max-width : 965px) {
+	.navigation #btn-home{
+		margin:24px 24px 0 24px;
+	}
+	.navigation .nav-btn-holder .nav-btn a{
+		padding: 24px 20px;
+	}
 }
 
 
@@ -10,7 +15,10 @@
 	.main-wrapper{
 		margin-top: 60px;
 
-
+		-webkit-transition: .8s ease-in-out;
+		-moz-transition: .8s ease-in-out;
+		-o-transition: .8s ease-in-out;
+		transition: .8s ease-in-out;
 		
 	}
 
@@ -20,16 +28,21 @@
 		top: 0px;
 		left: 0px;
 	}
+
+	#site-cover{
+		
+	}
+
 	.navigation #btn-home{
 		left: -100%;
 		
 	}
 	#mobile-menu{
   		position: absolute;
-  		left: -2%;
-  		height:96px;
-  		width: 96px;
-  		top: -17px;
+  		left: 24px;
+  		height:auto;
+  		width: 24px;
+  		top: 21px;
   		display: block;
 
 	}
@@ -73,13 +86,15 @@
 	}
 	.navigation .nav-btn-holder .nav-btn a:hover{
 		background: #eee;
-		color:#000;
 	}
 
 	.navigation .nav-btn-holder .nav-btn .sub-nav-holder{
 		position: relative;
 		top: 0px;
 		width: 100%;
+		 -moz-box-shadow: none;
+  		-webkit-box-shadow: none;
+        box-shadow: none;
 
 	}
 	.navigation .nav-btn-holder .nav-btn .sub-nav-holder a{
@@ -91,7 +106,7 @@
 	  margin-top: 0px;
 	  }
 	.navigation .nav-btn-holder .nav-btn:hover .sub-nav-holder{
-	    height:auto;
+	    height:0px;
 	  }
 
 
@@ -132,10 +147,7 @@
 		width: 86%;
 		font-size: 3.5vw;
 		line-height: 4.5vh;
-		-webkit-transition: .8s ease-in-out;
-		-moz-transition: .8s ease-in-out;
-		-o-transition: .8s ease-in-out;
-		transition: .8s ease-in-out;
+		
 	}
 
 
@@ -145,21 +157,32 @@
 
 
 
-/* ANIMATIONS */
 
 
-.menu-on{
 
--webkit-transform: translate(125%, 0%);
- transform: translate(125%, 0%);
+@media only screen and (max-width : 414px) {
+	h1{
+		line-height: 7.5vh;
+	}
+	h1 span{
+		left: -3.5vw;
+	}
+	.content-wrapper{
+		font-size: 3.8vw;
+	}
+
+	.navigation .nav-btn-holder .nav-btn a{
+		padding: 24px 24px;
+		font-size:6vw;
+	}
+
+	.navigation .nav-btn-holder .nav-btn .sub-nav-holder a{
+		font-size: 4.5vw;
+		padding:12px 25px;
+
+	}
+	
+
 }
-
-.menu-open{
--webkit-transform: translate(80%, 0%);
- transform: translate(80%, 0%);
-}
-
-
-
 
 

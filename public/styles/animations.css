@@ -1,0 +1,33 @@
+
+
+
+/* ANIMATIONS */
+
+
+.menu-on{ /* opening mobile menu*/
+-webkit-transform: translate(125%, 0%);
+ transform: translate(125%, 0%);
+}
+
+.menu-open{ /*pushing content over*/
+-webkit-transform: translate(80%, 0%);
+ transform: translate(80%, 0%);
+}
+
+
+.cover-site{
+	
+  -webkit-animation: overlayCover ease 1s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
+}
+
+@-webkit-keyframes overlayCover {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:.5;
+  }
+}

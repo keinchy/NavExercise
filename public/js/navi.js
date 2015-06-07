@@ -18,7 +18,9 @@ var init = function(){
       $navLinks,
       $subNavHeight,
       $subNavExpand,
-      $subNavWrapper;
+      $subNavWrapper,
+
+      $mobileMenuOpen = false;
       
 
 
@@ -68,7 +70,7 @@ var init = function(){
                   var linkText = document.createTextNode(navData.items[navItem].items[navSubItem].label);
                   a.appendChild(linkText);
 
-                 // a.setAttribute('data-sub-wrapper',"sub-nav-wrap-"+navItem);
+                  a.setAttribute('target',"_blank");
                   a.setAttribute('data-sub-holder',"sub-nav-"+navItem);
                   a.title = navData.items[navItem].items[navSubItem].label;
                   a.href = navData.items[navItem].items[navSubItem].url;
@@ -91,36 +93,54 @@ var init = function(){
       
       var elements = document.getElementsByClassName('with-sub');
       if($windowWidth > 900){
-      }
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].addEventListener('mouseover', function(event) {
-                console.log($windowWidth);
-                  
-
-                       $subNavExpand = event.target.getAttribute('data-sub-holder');
-                       $subNavWrapper = event.target.getAttribute('data-sub-wrapper');
-                       if($subNavHeight == null){
-                         $subNavHeight = document.getElementById($subNavWrapper).offsetHeight;
-                         document.getElementById($subNavExpand).style.height= ($subNavHeight+12)+"px";
-                       }
-                  
-
-            }, false);
-           
-            elements[i].addEventListener('mouseout', function(event) {
-              if($windowWidth > 900){
-                if(window.getComputedStyle(event.target).backgroundColor != "rgb(255, 255, 255)"){
-                   if($subNavHeight >0){
-                    $subNavHeight = null;
-                     document.getElementById($subNavExpand).style.height= "0px";
-                   }
-               }
-              }
-
-            }, false);
-           
+          for (var i = 0; i < elements.length; i++) {
+            elements[i].addEventListener('mouseover', function(event) {navRollIn();}, false);
+            elements[i].addEventListener('mouseout', function(event) {navRollOut();}, false);
+            elements[i].addEventListener('click', function(event) {navRollOut();}, false);
         }
+      }else if($windowWidth < 901){
+          var currOpen;
+          for (var i = 0; i < elements.length; i++) {
+            elements[i].addEventListener('click', function(event) {
+                if(event.target != currOpen){
+                  navRollOut(currOpen);
 
+                  navRollIn();
+                  currOpen = event.target;
+                }else{
+                    if($subNavHeight > 0){
+                      navRollOut();
+                      currOpen = event.target;
+                     
+                    }else{
+                      navRollIn();
+                      currOpen = event.target;
+                      
+                    }
+                     
+                }
+            }, false);
+
+          }
+            
+      }
+        
+      function navRollIn(){
+         $subNavExpand = event.target.getAttribute('data-sub-holder');
+         $subNavWrapper = event.target.getAttribute('data-sub-wrapper');
+         if($subNavHeight == null){
+           $subNavHeight = document.getElementById($subNavWrapper).offsetHeight;
+           document.getElementById($subNavExpand).style.height= ($subNavHeight+12)+"px";
+         }
+      }
+      function navRollOut(){
+         if(window.getComputedStyle(event.target).backgroundColor != "rgb(255, 255, 255)"){
+               if($subNavHeight >0){
+                $subNavHeight = null;
+                 document.getElementById($subNavExpand).style.height= "0px";
+               }
+           }
+      } 
       
     
     });
@@ -153,22 +173,38 @@ var init = function(){
       $bodyEl = $docu.getElementsByTagName('body')[0],
       $windowWidth = $win.innerWidth || $docuEl.clientWidth || $bodyEl.clientWidth;
       console.log($windowWidth);
+
+      
      
      
   }
   var settingButtons  = function(){
       viewportChecking();
+
       $mobilMenu = document.getElementById('mobile-menu'),
       $navWrapper = document.getElementById('navigation-links'),
-      $mainWrapper = document.getElementById('hero');
+      $mainWrapper = document.getElementById('main-holder');
+      $siteCover = document.getElementById('site-cover');
+
+
+      if($windowWidth < 901){
+      /*----*/
+
+          $mobilMenu.addEventListener("click", function(){
+
+              $navWrapper.className += " " + "menu-on";
+              $mainWrapper.className += " " + "menu-open";
+              $siteCover.className += " " + "cover-site";
+              $siteCover.style.visibility='visible';
+        });
 
 
 
-      $mobilMenu.addEventListener("click", function(){
 
-        $navWrapper.className += " " + "menu-on";
-        $mainWrapper.className += " " + "menu-open";
-      });
+
+      /*-----*/
+      }
+
   }
 
   // CLICKING
@@ -187,6 +223,7 @@ var init = function(){
 
 window.onload = init;
 window.onresize = viewportChecking;
+window.onresize = settingButtons;
 
 
 
