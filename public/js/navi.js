@@ -20,12 +20,17 @@ var init = function(){
       $subNavExpand,
       $subNavWrapper,
 
-      $mobileMenuOpen = false;
+      $mobileMenuOpen = false,
+      $menuBtn,
+      $homeBtn,
+      $closeBtn,
+      $siteCover,
+      $mainWrapper;
       
 
 
 
-      settingButtons();
+     
 
     /* POPULATE DATA : BEGIN */
 
@@ -128,6 +133,11 @@ var init = function(){
       function navRollIn(){
          $subNavExpand = event.target.getAttribute('data-sub-holder');
          $subNavWrapper = event.target.getAttribute('data-sub-wrapper');
+         if($windowWidth < 901){
+
+            event.target.style.backgroundImage="url('images/arrow-up.png')";
+         }
+         
          if($subNavHeight == null){
            $subNavHeight = document.getElementById($subNavWrapper).offsetHeight;
            document.getElementById($subNavExpand).style.height= ($subNavHeight+12)+"px";
@@ -138,6 +148,10 @@ var init = function(){
                if($subNavHeight >0){
                 $subNavHeight = null;
                  document.getElementById($subNavExpand).style.height= "0px";
+                 if($windowWidth < 901){
+                    event.target.style.backgroundImage="url('images/arrow-down.png')";
+                 }
+                 
                }
            }
       } 
@@ -172,7 +186,7 @@ var init = function(){
       $docuEl = $docu.documentElement,
       $bodyEl = $docu.getElementsByTagName('body')[0],
       $windowWidth = $win.innerWidth || $docuEl.clientWidth || $bodyEl.clientWidth;
-      console.log($windowWidth);
+      
 
       
      
@@ -185,24 +199,82 @@ var init = function(){
       $navWrapper = document.getElementById('navigation-links'),
       $mainWrapper = document.getElementById('main-holder');
       $siteCover = document.getElementById('site-cover');
+      $menuBtn = document.getElementById('mobile-menu');
+      $homeBtn = document.getElementById('btn-home');
+      $closeBtn = document.getElementById('mobile-menu-close');
+
+      
+      
+      
+
 
 
       if($windowWidth < 901){
       /*----*/
 
           $mobilMenu.addEventListener("click", function(){
+              openMobileMenu();
+              $mobileMenuOpen = true;
+          });
 
-              $navWrapper.className += " " + "menu-on";
-              $mainWrapper.className += " " + "menu-open";
-              $siteCover.className += " " + "cover-site";
-              $siteCover.style.visibility='visible';
-        });
+          $closeBtn.addEventListener("click", function(){
+              closeMobileMenu();
+              $mobileMenuOpen = false;  
+          });
 
 
 
 
 
       /*-----*/
+      }
+
+      var openMobileMenu = function(){
+          $navWrapper.className += " " + "menu-on";
+          $mainWrapper.className += " " + "content-off";
+          $siteCover.className += " " + "cover-site";
+          $siteCover.style.visibility='visible';
+
+          $menuBtn.className += " " + "hamburger-out";
+          $homeBtn.className += " " + "home-btn-in";
+          $closeBtn.className += " " + "close-in";
+
+          document.body.style.overflowY = "hidden";
+          document.body.style.overflowX = "hidden";
+
+      }
+
+      var closeMobileMenu = function(){
+
+          $navWrapper.className += " " + "menu-off";
+          $siteCover.className += " " + "cover-site-off";
+          $mainWrapper.className += " " + "content-on";
+
+          
+          $menuBtn.className += " " + "hamburger-in";
+          $homeBtn.className += " " + "home-btn-out";
+          $closeBtn.className += " " + "close-out";
+
+          setTimeout(function(){
+            $navWrapper.className -= " " + "menu-on";
+            $navWrapper.className += " " + "nav-btn-holder";
+            
+            $mainWrapper.className -= " " + "content-off";
+            $mainWrapper.className += " " + "main-wrapper";
+            
+            $siteCover.className -= " " + "cover-site";
+            $siteCover.className += " " + "site-cover";
+
+            $siteCover.style.visibility='hidden';
+
+            $menuBtn.className -= " " + "hamburger-out";
+            $homeBtn.className -= " " + "home-btn-in";
+            $closeBtn.className -= " " + "close-in";
+
+            document.body.style.overflowY = "auto";
+            document.body.style.overflowX = "auto";
+          },1100)
+
       }
 
   }
@@ -221,9 +293,21 @@ var init = function(){
 
 
 
-window.onload = init;
-window.onresize = viewportChecking;
-window.onresize = settingButtons;
+window.onload = function(){
+   init();
+   viewportChecking(); 
+   settingButtons();
+}
+window.onresize = function(){
+  viewportChecking();
+    if($windowWidth < 901){
+      settingButtons();
+    }
+
+    if($windowWidth>900 && $mobileMenuOpen == true){
+      $closeBtn.click();
+    }
+}
 
 
 
