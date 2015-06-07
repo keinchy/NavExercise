@@ -1,5 +1,7 @@
 @import "fonts.css";
 
+
+
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 body,html {
   background: #fff;
@@ -8,6 +10,13 @@ body,html {
   margin: 0px;
 }
 
+.main-wrapper{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: inherit;
+  overflow: hidden;
+}
 /* NAVIGATION : BEGIN */
 
 .navigation{
@@ -32,7 +41,9 @@ body,html {
   padding: 0px;
   margin: 24px 48px 0 24px;
 }
-
+#mobile-menu{
+  display: none;
+}
 .navigation .nav-btn-holder{
   position: relative;
   display: inline-block;
@@ -43,7 +54,7 @@ body,html {
   vertical-align: top;
   width: auto;
   font-size: 0px;
-  
+
 }
 .navigation .nav-btn-holder .nav-btn{
   position: relative;
@@ -63,10 +74,11 @@ body,html {
   color: #ec008c;
   background: #fff;
 } 
-
+/*
 .navigation .nav-btn-holder .nav-btn:hover .sub-nav-holder{
-    height:auto;
+   height: 0px;
   }
+*/
 .navigation .nav-btn-holder .nav-btn .sub-nav-holder{
   position: absolute;
   top: 72px;
@@ -76,9 +88,25 @@ body,html {
   width: 225px;
   height: 0px;
   overflow: hidden;
+  
+  -moz-box-shadow: -3px 2px 8px #222;
+  -webkit-box-shadow: -3px 2px 8px #222;
+  box-shadow: -3px 2px 8px #222;
+
+  /*Animation*/
+ -webkit-transition: height .35s ease;
+    -moz-transition: height .35s ease;
+      -o-transition: height .35s ease;
+     -ms-transition: height .35s ease;
+         transition: height .35s ease;
 
 }
-
+.navigation .nav-btn-holder .nav-btn .sub-nav-holder .sub-nav-holder-wrapper{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
 .navigation .nav-btn-holder .nav-btn .sub-nav-holder a{
   position: relative;
   display: block;
@@ -109,7 +137,7 @@ body,html {
 
 
 
-.hero{
+#hero{
   position: relative;
   display: block;
   width: 100%;
@@ -118,14 +146,17 @@ body,html {
   background-size: cover;
   -webkit-background-size: cover;
 }
+#hero img{
+    display: none;
+  }
 
 h1 {
   position: absolute;
-  top: 50%;
+  top: 27%;
   left: 50%;
   color:#fff;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
   margin: 0;
   font: 15vmin/1.2 HUGEAvantGardeBold;
   letter-spacing: -0.02em;
@@ -147,3 +178,7 @@ h1 span{
   margin: 0 auto 0 auto;
   padding: 0 0%;
 }
+
+
+
+

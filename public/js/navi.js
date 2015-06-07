@@ -7,14 +7,25 @@
    
 */
 
-
 var init = function(){
 
 
   // Variables - Variables available throughout the scope of this object
   // -------------------------------------------------------------------
   var navData,
-      $navWrapper = document.getElementById('navigation-links');
+      $navWrapper,
+      $navWrapper = document.getElementById('navigation-links'),
+      $navLinks,
+      $subNavHeight,
+      $subNavExpand,
+      $subNavWrapper;
+      
+
+
+
+      settingButtons();
+
+    /* POPULATE DATA : BEGIN */
 
 
    loadJSON(function(response) {
@@ -29,39 +40,93 @@ var init = function(){
         var linkBox = document.createElement( 'div' );  
         linkBox.className = "nav-btn";
 
-        var linkSubBox = document.createElement( 'div' );
-        linkSubBox.className = "sub-nav-holder";
 
-        var linkBoxContent = '<a href="'+navData.items[navItem].url+'">'+navData.items[navItem].label+'</a>';
+        var linkSubBox = document.createElement( 'div' );
+        var linkSubBoxHolder = document.createElement( 'div' );
+
+        linkSubBox.className = "sub-nav-holder";
+        linkSubBox.id = "sub-nav-"+navItem;
+
+        linkSubBoxHolder.className = "sub-nav-holder-wrapper";
+        linkSubBoxHolder.id = "sub-nav-wrap-"+navItem;
+        
+
+        var linkBoxContent = '<a id="nav-'+navItem+'"data-sub-wrapper="sub-nav-wrap-'+navItem+'" data-sub-holder="sub-nav-'+navItem+'" href="'+navData.items[navItem].url+'">'+navData.items[navItem].label+'</a>';
 
         linkBox.innerHTML = linkBoxContent;
         $navWrapper.appendChild(linkBox);
+         
+
+        
 
         if(navData.items[navItem].items.length > 0){
+            linkBox.className = "nav-btn with-sub";
+            linkSubBox.appendChild(linkSubBoxHolder);
             for (var navSubItem = 0; navSubItem < navData.items[navItem].items.length; navSubItem++) {
                   
                   var a = document.createElement('a');
                   var linkText = document.createTextNode(navData.items[navItem].items[navSubItem].label);
                   a.appendChild(linkText);
+
+                 // a.setAttribute('data-sub-wrapper',"sub-nav-wrap-"+navItem);
+                  a.setAttribute('data-sub-holder',"sub-nav-"+navItem);
                   a.title = navData.items[navItem].items[navSubItem].label;
                   a.href = navData.items[navItem].items[navSubItem].url;
 
-                  linkSubBox.appendChild(a);
+                  linkSubBoxHolder.appendChild(a);
+
+
             };
+             
 
             linkBox.appendChild(linkSubBox);
         }
 
-        
-
-
-        
-
       }
+
+     /* POPULATE DATA : END */ 
+
+
+     /* NAVIGATIO ROLLOVERS : BEGIN */
+      
+      var elements = document.getElementsByClassName('with-sub');
+      if($windowWidth > 900){
+      }
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].addEventListener('mouseover', function(event) {
+                console.log($windowWidth);
+                  
+
+                       $subNavExpand = event.target.getAttribute('data-sub-holder');
+                       $subNavWrapper = event.target.getAttribute('data-sub-wrapper');
+                       if($subNavHeight == null){
+                         $subNavHeight = document.getElementById($subNavWrapper).offsetHeight;
+                         document.getElementById($subNavExpand).style.height= ($subNavHeight+12)+"px";
+                       }
+                  
+
+            }, false);
+           
+            elements[i].addEventListener('mouseout', function(event) {
+              if($windowWidth > 900){
+                if(window.getComputedStyle(event.target).backgroundColor != "rgb(255, 255, 255)"){
+                   if($subNavHeight >0){
+                    $subNavHeight = null;
+                     document.getElementById($subNavExpand).style.height= "0px";
+                   }
+               }
+              }
+
+            }, false);
+           
+        }
+
+      
+    
     });
+    /* NAVIGATIO ROLLOVERS : END */
 
-
-
+  
 }
   // FUNCTIONS
   // ===================================================================
@@ -71,7 +136,7 @@ var init = function(){
   var loadJSON = function( callback ){
       var xobj = new XMLHttpRequest();
       xobj.overrideMimeType("application/json");
-      xobj.open('GET', '../json/nav.json', true); 
+      xobj.open('GET', '/api/nav.json', true); 
       xobj.onreadystatechange = function () {
             if (xobj.readyState == 4 && xobj.status == "200") {
               // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
@@ -81,13 +146,47 @@ var init = function(){
       xobj.send(null);  
   }
 
+  var viewportChecking = function(){
+      $win = window,
+      $docu = document,
+      $docuEl = $docu.documentElement,
+      $bodyEl = $docu.getElementsByTagName('body')[0],
+      $windowWidth = $win.innerWidth || $docuEl.clientWidth || $bodyEl.clientWidth;
+      console.log($windowWidth);
+     
+     
+  }
+  var settingButtons  = function(){
+      viewportChecking();
+      $mobilMenu = document.getElementById('mobile-menu'),
+      $navWrapper = document.getElementById('navigation-links'),
+      $mainWrapper = document.getElementById('hero');
 
 
+
+      $mobilMenu.addEventListener("click", function(){
+
+        $navWrapper.className += " " + "menu-on";
+        $mainWrapper.className += " " + "menu-open";
+      });
+  }
+
+  // CLICKING
+  // ===================================================================
+  // ===================================================================
+  
+
+
+    
+  
+  
+
+  
 
 
 
 window.onload = init;
-
+window.onresize = viewportChecking;
 
 
 

@@ -1,0 +1,165 @@
+
+
+@media only screen and (max-width : 900px) {
+
+}
+
+
+@media only screen and (max-width : 900px) {
+
+	.main-wrapper{
+		margin-top: 60px;
+
+
+		
+	}
+
+	.navigation{
+		height:60px;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+	}
+	.navigation #btn-home{
+		left: -100%;
+		
+	}
+	#mobile-menu{
+  		position: absolute;
+  		left: -2%;
+  		height:96px;
+  		width: 96px;
+  		top: -17px;
+  		display: block;
+
+	}
+	#mobile-menu img{
+		position: relative;
+		width: 100%;
+		display: block;
+	}
+	.navigation .nav-btn-holder{
+		position: fixed;
+		left: -100%;
+		top:60px;
+		background: #fff;
+		display: block;
+		width: 80%;
+		height: 100%;
+
+		bottom:0;
+
+	    overflow-y:scroll;
+	    overflow-x:hidden;
+
+	      /*Animation*/
+	
+    -webkit-transition: .8s ease-in-out;
+	-moz-transition: .8s ease-in-out;
+	-o-transition: .8s ease-in-out;
+	transition: .8s ease-in-out;
+	}
+
+	.navigation .nav-btn-holder .nav-btn{
+		display: block;
+		background: #fff;
+	}
+	
+	.navigation .nav-btn-holder .nav-btn a{
+		color:#000;
+		font-size: 4vw;
+		width: 100%;
+
+	}
+	.navigation .nav-btn-holder .nav-btn a:hover{
+		background: #eee;
+		color:#000;
+	}
+
+	.navigation .nav-btn-holder .nav-btn .sub-nav-holder{
+		position: relative;
+		top: 0px;
+		width: 100%;
+
+	}
+	.navigation .nav-btn-holder .nav-btn .sub-nav-holder a{
+		font-size: 3.1vw;
+		width: 100%;
+
+	}
+	.navigation .nav-btn-holder .nav-btn .sub-nav-holder a:first-child{
+	  margin-top: 0px;
+	  }
+	.navigation .nav-btn-holder .nav-btn:hover .sub-nav-holder{
+	    height:auto;
+	  }
+
+
+	/**/
+	
+	#hero{
+		height:auto;
+		background: none;
+		overflow: hidden;
+		-webkit-transition: 1s ease-in-out;
+		-moz-transition: 1s ease-in-out;
+		-o-transition: 1s ease-in-out;
+		transition: 1s ease-in-out;
+	}  
+	#hero img{
+	position: relative;
+	width: 125%;
+	-webkit-transform: translate(-12.5%, 0%);
+    transform: translate(-12.5%, 0%);
+	height: auto;
+    display: block;
+  	}
+	h1 {
+		position: relative;
+		color: #000;
+		text-align: left;
+		font-size: 12vw;
+		line-height: 10vh;
+		width: 87%;
+		margin: 9% 0%;
+	}
+	h1 span{
+		left: -3.2vw;
+		position: relative;
+	}
+
+	.content-wrapper{
+		width: 86%;
+		font-size: 3.5vw;
+		line-height: 4.5vh;
+		-webkit-transition: .8s ease-in-out;
+		-moz-transition: .8s ease-in-out;
+		-o-transition: .8s ease-in-out;
+		transition: .8s ease-in-out;
+	}
+
+
+}
+
+
+
+
+
+/* ANIMATIONS */
+
+
+.menu-on{
+
+-webkit-transform: translate(125%, 0%);
+ transform: translate(125%, 0%);
+}
+
+.menu-open{
+-webkit-transform: translate(80%, 0%);
+ transform: translate(80%, 0%);
+}
+
+
+
+
+
